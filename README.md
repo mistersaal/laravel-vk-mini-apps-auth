@@ -33,6 +33,9 @@ VK_TOKEN="your_service_token"
 
 ## Использование
 
+User должен имплементировать Mistersaal\VkMiniAppsAuth\VkMiniAppsAuthenticatable.
+Метод getVkIdFieldName должен возвращать название поля с VK id пользователя.
+
 Теперь можно использовать middleware *'auth.vk'*,
 который будет пропускать только аутентифицированных
 пользователей Vk Mini Apps (!!! он не пропустит
