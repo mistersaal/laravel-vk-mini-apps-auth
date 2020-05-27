@@ -11,12 +11,13 @@ class VkMiniAppsAuthServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/vkminiapps.php' => config_path('vkminiapps.php'),
-            __DIR__ . '/VkMiniAppsAuthenticate.php' => app_path('Http/Middleware/VkMiniAppsAuthenticate.php')
         ]);
     }
 
     public function boot()
     {
+        $this->app['router']->aliasMiddleware('auth.vk' , VkMiniAppsAuthenticate::class);
+
         Auth::provider('vkMiniApps', function ($app, array $config) {
             return new VkUserProvider($config['model']);
         });

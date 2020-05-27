@@ -13,11 +13,6 @@ VK_SECRET="your_secret_key"
 VK_TOKEN="your_service_token"
 ```
 
-В App\Http\Kernel.php в $routeMiddleware добавить:
-```
-'auth.vk' => VkMiniAppsAuthenticate::class,
-```
-
 В config\auth.php:
 
 - defaults.guard => 'vkMiniApps'
