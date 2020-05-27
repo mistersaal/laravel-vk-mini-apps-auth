@@ -1,0 +1,21 @@
+{
+    "name": "mistersaal/laravel-vk-mini-apps-auth",
+    "description": "Пакет для аутентификации пользователя VK по подписи VK Mini Apps для Laravel",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "laravel/framework": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mistersaal\\VkMiniAppsAuth\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mistersaal\\VkMiniAppsAuth\\VkMiniAppsAuthServiceProvider"
+            ]
+        }
+    }
+}
