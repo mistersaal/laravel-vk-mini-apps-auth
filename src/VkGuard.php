@@ -74,7 +74,7 @@ class VkGuard implements Guard
 
     public function getVkIdentifier()
     {
-        return $this->getCredentials();
+        return $this->getCredentials()['vk_user_id'];
     }
 
     /**

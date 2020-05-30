@@ -49,6 +49,9 @@ window.axios = axios;
 window.axios.defaults.headers.common['X-Vk-Auth-Url'] = window.location.href;
 ```
 
+В хэлпере auth() или фасаде Auth будет доступен метод getVkIdentifier(), который выозвращает vkID, полученный
+из url.
+
 Для автоматической регистрации пользователя можно
 сделать вот такой контроллер, который не будет
 защищен мидлваром:
@@ -70,7 +73,8 @@ class LoginController extends Controller
             $user->save();
             return ['success' => true, 'newUser' => false];
         } else {
-            $user = $vkUsersData->getNewUser();
+            $vkId = auth()->getVkIdentifier();
+            $user = $vkUsersData->getNewUser($vkId);
             $user->save();
             return ['success' => true, 'newUser' => false];
         }
