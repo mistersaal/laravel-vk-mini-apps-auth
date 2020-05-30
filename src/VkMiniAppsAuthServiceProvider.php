@@ -12,6 +12,9 @@ class VkMiniAppsAuthServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/vkminiapps.php' => config_path('vkminiapps.php'),
         ]);
+        $this->app->bind(VkSign::class, function ($app) {
+            return new VkSign(config('vkminiapps.app.secret'));
+        });
     }
 
     public function boot()
@@ -26,7 +29,8 @@ class VkMiniAppsAuthServiceProvider extends ServiceProvider
             return new VkGuard(
                 Auth::createUserProvider($config['provider']),
                 $app->make('request'),
-                $app->make(VkSign::class)
+                $app->make(VkSign::class),
+                config('vkminiapps.signUrl.header')
             );
         });
     }

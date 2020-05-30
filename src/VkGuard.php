@@ -15,6 +15,7 @@ class VkGuard implements Guard
     protected $provider;
     protected $user;
     protected $vkSign;
+    protected $header;
 
     /**
      * Create a new authentication guard.
@@ -22,13 +23,15 @@ class VkGuard implements Guard
      * @param UserProvider $provider
      * @param Request $request
      * @param VkSign $vkSign
+     * @param string $header
      */
-    public function __construct(UserProvider $provider, Request $request, VkSign $vkSign)
+    public function __construct(UserProvider $provider, Request $request, VkSign $vkSign, string $header)
     {
         $this->request = $request;
         $this->provider = $provider;
         $this->user = null;
         $this->vkSign = $vkSign;
+        $this->header = $header;
     }
 
     public function check()
@@ -61,12 +64,17 @@ class VkGuard implements Guard
      */
     public function getCredentials()
     {
-        $url = $this->request->header(config('vkminiapps.signUrl.header'));
+        $url = $this->request->header($this->header);
         if (! $url) {
             throw new VkSignException("No credentials.");
         }
 
         return $this->vkSign->getParams($url);
+    }
+
+    public function getVkIdentifier()
+    {
+        return $this->getCredentials();
     }
 
     /**

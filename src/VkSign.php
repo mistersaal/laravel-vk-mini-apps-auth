@@ -8,6 +8,17 @@ use Mistersaal\VkMiniAppsAuth\Exceptions\VkSignException;
 
 class VkSign
 {
+    private $secret;
+
+    /**
+     * VkSign constructor.
+     * @param $secret
+     */
+    public function __construct($secret)
+    {
+        $this->secret = $secret;
+    }
+
     /**
      * @param string $url
      * @return array
@@ -15,7 +26,7 @@ class VkSign
      */
     public function getParams(string $url)
     {
-        $client_secret = config('vkminiapps.app.secret'); //Защищённый ключ из настроек вашего приложения
+        $client_secret = $this->secret; //Защищённый ключ из настроек вашего приложения
 
         $query_params = [];
         parse_str(parse_url($url, PHP_URL_QUERY), $query_params); // Получаем query-параметры из URL
