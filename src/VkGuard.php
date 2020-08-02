@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
+use Mistersaal\VkMiniAppsAuth\Exceptions\VkSignException;
 
 class VkGuard implements Guard
 {
