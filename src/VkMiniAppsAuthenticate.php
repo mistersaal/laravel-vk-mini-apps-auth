@@ -2,6 +2,7 @@
 
 namespace Mistersaal\VkMiniAppsAuth;
 
+use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
