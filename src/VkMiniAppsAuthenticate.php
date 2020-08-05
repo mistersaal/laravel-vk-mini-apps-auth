@@ -7,10 +7,10 @@ use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class VkMiniAppsAuthenticate extends Middleware
 {
-    public function __construct(Auth $auth)
+    public function handle($request, Closure $next, ...$guards)
     {
-        parent::__construct($auth);
         auth()->validate();
+        return parent::handle($request, $next, $guards);
     }
 
     protected function redirectTo($request)
