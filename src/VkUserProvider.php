@@ -66,6 +66,6 @@ class VkUserProvider implements UserProvider
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
         /** @var VkMiniAppsAuthenticatable $user */
-        return $user->{$user->getVkIdFieldName()} === $credentials['vk_user_id'];
+        return $user->{$user->getVkIdFieldName()} == $credentials['vk_user_id'];
     }
 }
